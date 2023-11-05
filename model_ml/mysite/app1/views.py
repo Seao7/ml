@@ -1,7 +1,11 @@
 from django.shortcuts import render
-
+import os
 import pickle
-model = pickle.load(open("/Users/satyam/Desktop/Sem5/IT307/project/Model/model_ml/mysite/app1/feature_selected_model.pkl", 'rb'))
+from django.conf import settings
+
+base_dir = settings.BASE_DIR
+model_file_path = os.path.join(base_dir, 'app1/feature_selected_model.pkl')
+model = pickle.load(open(model_file_path, 'rb'))
 
 def predictor(request):
     if request.method == 'POST':
